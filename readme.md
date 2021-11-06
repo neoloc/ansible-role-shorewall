@@ -106,8 +106,8 @@ shorewall_group_rules:
     dest: all
     proto: icmp
     dport: 8
-    sport: -
-    origdest: -
+    sport: "-"
+    origdest: "-"
     comment: allow icmp pings
   - section: new
     action: ACCEPT
@@ -115,8 +115,8 @@ shorewall_group_rules:
     dest: $FW
     proto: tcp
     dport: 22
-    sport: -
-    origdest: -
+    sport: "-"
+    origdest: "-"
     comment: allow ssh from trusted
 
 shorewall6_group_zones:
@@ -164,8 +164,8 @@ shorewall6_group_rules:
     dest: all
     proto: icmp
     dport: 8
-    sport: -
-    origdest: -
+    sport: "-"
+    origdest: "-"
     comment: allow icmp pings
   - section: new
     action: ACCEPT
@@ -173,8 +173,8 @@ shorewall6_group_rules:
     dest: $FW
     proto: tcp
     dport: 22
-    sport: -
-    origdest: -
+    sport: "-"
+    origdest: "-"
     comment: allow ssh from trusted zone to the firewall
 ```
 
