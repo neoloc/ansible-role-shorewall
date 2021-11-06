@@ -19,6 +19,15 @@ Role Variables
 There are a lot of variables to list out so I have opted for a working example, minus some private information. All the variables that match `shorewall_group_` or `shorewall6_group_` also have a corresponding `shorewall_host_` and `shorewall6_host` with identical options. The templates are setup to put the `group` rules before the `host` rules.
 
 ```yaml
+
+shorewall:
+  install: true
+  service: true
+
+shorewall6:
+  install: true
+  service: true
+
 shorewall_configfiles:
   - shorewall.conf
   - params

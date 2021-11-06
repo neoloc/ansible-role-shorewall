@@ -9,6 +9,7 @@
     name: firewalld
     enabled: no
     state: stopped
+  when: shorewall.install == true
   tags: [firewall]
   failed_when: false
   changed_when: false
@@ -18,14 +19,23 @@
   package:
     name: firewalld
     state: absent
+  when: shorewall.install == true
   tags: [firewall]
 
-- name: install shorewall and shorewall6
+- name: install shorewall
   package:
     name:
       - shorewall
+    state: present
+  when: shorewall.install == true
+  tags: [firewall]
+
+- name: install shorewall6
+  package:
+    name:
       - shorewall6
     state: present
+  when: shorewall6.install == true
   tags: [firewall]
 
 - name: update firewall configuration
@@ -54,13 +64,17 @@
   register: shorewall6config
   notify: restart shorewall6
 
-- name: enable shorewall and shorewall6 service
+- name: enable shorewall service
   service:
-    name: "{{ item }}"
+    name: shorewall
     state: started
     enabled: yes
-  with_items:
-      - shorewall
-      - shorewall6
-  when: shorewallconfig.changed or shorewall6config.changed
+  when: shorewallconfig.changed and shorewall.service == true
+
+- name: enable shorewall6 service
+  service:
+    name: shorewall6
+    state: started
+    enabled: yes
+  when: shorewall6config.changed and shorewall.service == true
 ...
