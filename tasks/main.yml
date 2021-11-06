@@ -4,7 +4,7 @@
 ---
 
 - name: stop and disable firewalld
-  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Fedora' shorewall.install == true
+  when: (ansible_distribution == 'CentOS' or ansible_distribution == 'Fedora') and shorewall.install == true
   service:
     name: firewalld
     enabled: no
@@ -14,7 +14,7 @@
   changed_when: false
 
 - name: uninstall firewalld
-  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Fedora' shorewall.install == true
+  when: (ansible_distribution == 'CentOS' or ansible_distribution == 'Fedora') and shorewall.install == true
   package:
     name: firewalld
     state: absent
