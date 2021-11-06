@@ -1,0 +1,121 @@
+# {{ ansible_managed }}
+# Do not change file directly, changes will be overwritten.
+#
+#
+# Shorewall6 -- /etc/shorewall6/rules
+#
+# For information on the settings in this file, type "man shorewall6-rules"
+#
+# The manpage is also online at
+# http://www.shorewall.net/manpages6/shorewall6-rules.html
+#
+##############################################################################################################################################################
+#ACTION		SOURCE		DEST		PROTO	DPORT	SPORT	ORIGDEST	RATE	USER	MARK	CONNLIMIT	TIME	HEADERS	SWITCH	HELPER
+
+?SECTION ALL
+
+{% for item in shorewall6_group_rules %}
+{% if item.section == "all" %}
+{{ item.action }} {{ item.source }} {{ item.dest }}{% if item.proto is defined %} {{ item.proto }}{% endif %}{% if item.dport is defined %} {{ item.dport }}{% endif %}{% if item.sport is defined %} {{ item.sport }}{% endif %}{% if item.origdest is defined %} {{ item.origdest }}{% endif %}{% if item.comment is defined %} # {{ item.comment }}{% endif %}
+
+{% endif %}
+{% endfor %}
+
+{% if shorewall6_host_rules is defined %}
+{% for item in shorewall6_host_rules %}
+{% if item.section == "all" %}
+{{ item.action }} {{ item.source }} {{ item.dest }}{% if item.proto is defined %} {{ item.proto }}{% endif %}{% if item.dport is defined %} {{ item.dport }}{% endif %}{% if item.sport is defined %} {{ item.sport }}{% endif %}{% if item.origdest is defined %} {{ item.origdest }}{% endif %}{% if item.comment is defined %} # {{ item.comment }}{% endif %}
+
+{% endif %}
+{% endfor %}
+{% endif %}
+
+?SECTION ESTABLISHED
+
+{% for item in shorewall6_group_rules %}
+{% if item.section == "established" %}
+{{ item.action }} {{ item.source }} {{ item.dest }}{% if item.proto is defined %} {{ item.proto }}{% endif %}{% if item.dport is defined %} {{ item.dport }}{% endif %}{% if item.sport is defined %} {{ item.sport }}{% endif %}{% if item.origdest is defined %} {{ item.origdest }}{% endif %}{% if item.comment is defined %} # {{ item.comment }}{% endif %}
+
+{% endif %}
+{% endfor %}
+
+{% if shorewall6_host_rules is defined %}
+{% for item in shorewall6_host_rules %}
+{% if item.section == "established" %}
+{{ item.action }} {{ item.source }} {{ item.dest }}{% if item.proto is defined %} {{ item.proto }}{% endif %}{% if item.dport is defined %} {{ item.dport }}{% endif %}{% if item.sport is defined %} {{ item.sport }}{% endif %}{% if item.origdest is defined %} {{ item.origdest }}{% endif %}{% if item.comment is defined %} # {{ item.comment }}{% endif %}
+
+{% endif %}
+{% endfor %}
+{% endif %}
+
+?SECTION RELATED
+
+{% for item in shorewall6_group_rules %}
+{% if item.section == "related" %}
+{{ item.action }} {{ item.source }} {{ item.dest }}{% if item.proto is defined %} {{ item.proto }}{% endif %}{% if item.dport is defined %} {{ item.dport }}{% endif %}{% if item.sport is defined %} {{ item.sport }}{% endif %}{% if item.origdest is defined %} {{ item.origdest }}{% endif %}{% if item.comment is defined %} # {{ item.comment }}{% endif %}
+
+{% endif %}
+{% endfor %}
+
+{% if shorewall6_host_rules is defined %}
+{% for item in shorewall6_host_rules %}
+{% if item.section == "related" %}
+{{ item.action }} {{ item.source }} {{ item.dest }}{% if item.proto is defined %} {{ item.proto }}{% endif %}{% if item.dport is defined %} {{ item.dport }}{% endif %}{% if item.sport is defined %} {{ item.sport }}{% endif %}{% if item.origdest is defined %} {{ item.origdest }}{% endif %}{% if item.comment is defined %} # {{ item.comment }}{% endif %}
+
+{% endif %}
+{% endfor %}
+{% endif %}
+
+?SECTION INVALID
+
+{% for item in shorewall6_group_rules %}
+{% if item.section == "invalid" %}
+{{ item.action }} {{ item.source }} {{ item.dest }}{% if item.proto is defined %} {{ item.proto }}{% endif %}{% if item.dport is defined %} {{ item.dport }}{% endif %}{% if item.sport is defined %} {{ item.sport }}{% endif %}{% if item.origdest is defined %} {{ item.origdest }}{% endif %}{% if item.comment is defined %} # {{ item.comment }}{% endif %}
+
+{% endif %}
+{% endfor %}
+
+{% if shorewall6_host_rules is defined %}
+{% for item in shorewall6_host_rules %}
+{% if item.section == "invalid" %}
+{{ item.action }} {{ item.source }} {{ item.dest }}{% if item.proto is defined %} {{ item.proto }}{% endif %}{% if item.dport is defined %} {{ item.dport }}{% endif %}{% if item.sport is defined %} {{ item.sport }}{% endif %}{% if item.origdest is defined %} {{ item.origdest }}{% endif %}{% if item.comment is defined %} # {{ item.comment }}{% endif %}
+
+{% endif %}
+{% endfor %}
+{% endif %}
+
+?SECTION UNTRACKED
+
+{% for item in shorewall6_group_rules %}
+{% if item.section == "untracked" %}
+{{ item.action }} {{ item.source }} {{ item.dest }}{% if item.proto is defined %} {{ item.proto }}{% endif %}{% if item.dport is defined %} {{ item.dport }}{% endif %}{% if item.sport is defined %} {{ item.sport }}{% endif %}{% if item.origdest is defined %} {{ item.origdest }}{% endif %}{% if item.comment is defined %} # {{ item.comment }}{% endif %}
+
+{% endif %}
+{% endfor %}
+
+{% if shorewall6_host_rules is defined %}
+{% for item in shorewall6_host_rules %}
+{% if item.section == "untracked" %}
+{{ item.action }} {{ item.source }} {{ item.dest }}{% if item.proto is defined %} {{ item.proto }}{% endif %}{% if item.dport is defined %} {{ item.dport }}{% endif %}{% if item.sport is defined %} {{ item.sport }}{% endif %}{% if item.origdest is defined %} {{ item.origdest }}{% endif %}{% if item.comment is defined %} # {{ item.comment }}{% endif %}
+
+{% endif %}
+{% endfor %}
+{% endif %}
+
+?SECTION NEW
+
+{% for item in shorewall6_group_rules %}
+{% if item.section == "new" %}
+{{ item.action }} {{ item.source }} {{ item.dest }}{% if item.proto is defined %} {{ item.proto }}{% endif %}{% if item.dport is defined %} {{ item.dport }}{% endif %}{% if item.sport is defined %} {{ item.sport }}{% endif %}{% if item.origdest is defined %} {{ item.origdest }}{% endif %}{% if item.comment is defined %} # {{ item.comment }}{% endif %}
+
+{% endif %}
+{% endfor %}
+
+{% if shorewall6_host_rules is defined %}
+{% for item in shorewall6_host_rules %}
+{% if item.section == "new" %}
+{{ item.action }} {{ item.source }} {{ item.dest }}{% if item.proto is defined %} {{ item.proto }}{% endif %}{% if item.dport is defined %} {{ item.dport }}{% endif %}{% if item.sport is defined %} {{ item.sport }}{% endif %}{% if item.origdest is defined %} {{ item.origdest }}{% endif %}{% if item.comment is defined %} # {{ item.comment }}{% endif %}
+
+{% endif %}
+{% endfor %}
+{% endif %}

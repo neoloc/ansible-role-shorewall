@@ -1,0 +1,25 @@
+# {{ ansible_managed }}
+#
+# Shorewall -- /etc/shorewall/netmap
+#
+# For information about entries in this file, type "man shorewall-netmap"
+#
+# See http://shorewall.net/netmap.html for an example and usage
+# information.
+#
+#############################################################################################
+#TYPE   NET1            INTERFACE       NET2            NET3            PROTO   DPORT   SPORT
+
+{% if shorewall_group_netmap is defined %}
+{% for item in shorewall_group_netmap %}
+{{ item.type}} {{ item.net1 }} {{ item.interface }} {{ item.net2 }} {{ item.net3 }} {{ item.proto }} {{ item.dport }} {{ item.sport }} {% if item.comment is defined %} # {{ item.comment }}{% endif %}
+
+{% endfor %}
+{% endif %}
+
+{% if shorewall_host_netmap is defined %}
+{% for item in shorewall_host_netmap %}
+{{ item.type}} {{ item.net1 }} {{ item.interface }} {{ item.net2 }} {{ item.net3 }} {{ item.proto }} {{ item.dport }} {{ item.sport }} {% if item.comment is defined %} # {{ item.comment }}{% endif %}
+
+{% endfor %}
+{% endif %}

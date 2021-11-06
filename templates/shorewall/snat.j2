@@ -1,0 +1,26 @@
+# {{ ansible_managed }}
+# Do not change file directly, changes will be overwritten.
+#
+#
+# Shorewall -- /etc/shorewall/snat
+#
+# For information about entries in this file, type "man shorewall-snat"
+#
+# See http://shorewall.net/manpages/shorewall-snat.html for more information
+#
+###########################################################################################################################################
+#ACTION			SOURCE			DEST		PROTO	PORT	IPSEC	MARK	USER	SWITCH	ORIGDEST	PROBABILITY
+
+{% if shorewall_group_snat is defined %}
+{% for item in shorewall_group_snat %}
+{{ item.action}} {{ item.source }} {{ item.dest }} {{ item.proto }} {{ item.port }}{% if item.comment is defined %} # {{ item.comment }}{% endif %}
+
+{% endfor %}
+{% endif %}
+
+{% if shorewall_host_snat is defined %}
+{% for item in shorewall_host_snat %}
+{{ item.action}} {{ item.source }} {{ item.dest }} {{ item.proto }} {{ item.port }}{% if item.comment is defined %} # {{ item.comment }}{% endif %}
+
+{% endfor %}
+{% endif %}

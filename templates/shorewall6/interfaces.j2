@@ -1,0 +1,24 @@
+# {{ ansible_managed }}
+# Do not change file directly, changes will be overwritten.
+#
+#
+# Shorewall6 -- /etc/shorewall6/interfaces
+#
+# For information about entries in this file, type "man shorewall6-interfaces"
+#
+# The manpage is also online at
+# http://www.shorewall.net/manpages6/shorewall6-interfaces.html
+#
+?FORMAT 2
+###############################################################################
+#ZONE		INTERFACE		OPTIONS
+
+{% for item in shorewall6_group_interfaces %}
+{{ item.zone }} {{ item.interface }}{% if item.options is defined %} {{ item.options }}{% endif %}{% if item.comment is defined %} # {{ item.comment }}{% endif %}
+
+{% endfor %}
+
+{% for item in shorewall6_host_interfaces %}
+{{ item.zone }} {{ item.interface }}{% if item.options is defined %} {{ item.options }}{% endif %}{% if item.comment is defined %} # {{ item.comment }}{% endif %}
+
+{% endfor %}

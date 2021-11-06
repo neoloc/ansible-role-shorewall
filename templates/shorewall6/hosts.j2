@@ -1,0 +1,23 @@
+# {{ ansible_managed }}
+# Do not change file directly, changes will be overwritten.
+#
+#
+# Shorewall6 -- /etc/shorewall6/hosts
+#
+# For information about entries in this file, type "man shorewall6-hosts"
+#
+# The manpage is also online at
+# http://www.shorewall.net/manpages6/shorewall6-hosts.html
+#
+###############################################################################
+#ZONE		HOSTS				OPTIONS
+
+{% for item in shorewall6_group_hosts %}
+{{ item.zone }} {{ item.hosts }}{% if item.options is defined %} {{ item.options }}{% endif %}{% if item.comment is defined %} # {{ item.comment }}{% endif %}
+
+{% endfor %}
+
+{% for item in shorewall6_host_hosts %}
+{{ item.zone }} {{ item.hosts }}{% if item.options is defined %} {{ item.options }}{% endif %}{% if item.comment is defined %} # {{ item.comment }}{% endif %}
+
+{% endfor %}

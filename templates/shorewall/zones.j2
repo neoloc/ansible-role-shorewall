@@ -1,0 +1,25 @@
+# {{ ansible_managed }}
+# Do not change file directly, changes will be overwritten.
+#
+#
+# Shorewall -- /etc/shorewall/zones
+#
+# For information about this file, type "man shorewall-zones"
+#
+# The manpage is also online at
+# http://www.shorewall.net/manpages/shorewall-zones.html
+#
+###############################################################################
+#ZONE		TYPE		OPTIONS		IN_OPTIONS	OUT_OPTIONS
+
+{% for item in shorewall_group_zones %}
+{{ item.name }} {{ item.type }}{% if item.comment is defined %} # {{ item.comment }}{% endif %}
+
+{% endfor %}
+
+{% if shorewall_host_zones is defined %}
+{% for item in shorewall_host_zones %}
+{{ item.name }} {{ item.type }}{% if item.comment is defined %} # {{ item.comment }}{% endif %}
+
+{% endfor %}
+{% endif %}

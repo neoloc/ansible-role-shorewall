@@ -1,0 +1,66 @@
+# firewall configuration
+#
+#
+---
+
+- name: stop and disable firewalld
+  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Fedora'
+  service:
+    name: firewalld
+    enabled: no
+    state: stopped
+  tags: [firewall]
+  failed_when: false
+  changed_when: false
+
+- name: uninstall firewalld
+  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Fedora'
+  package:
+    name: firewalld
+    state: absent
+  tags: [firewall]
+
+- name: install shorewall and shorewall6
+  package:
+    name:
+      - shorewall
+      - shorewall6
+    state: present
+  tags: [firewall]
+
+- name: update firewall configuration
+  template:
+    src: "shorewall/{{ item }}.j2"
+    dest: "/etc/shorewall/{{ item }}"
+    owner: root
+    group: root
+    mode: '600'
+  with_items: "{{ shorewall_configfiles }}"
+  tags: [firewall]
+  when: shorewall_configfiles is defined
+  register: shorewallconfig
+  notify: restart shorewall
+
+- name: update firewall6 configuration
+  template:
+    src: "shorewall6/{{ item }}.j2"
+    dest: "/etc/shorewall6/{{ item }}"
+    owner: root
+    group: root
+    mode: '600'
+  with_items: "{{ shorewall6_configfiles }}"
+  tags: [firewall]
+  when: shorewall6_configfiles is defined
+  register: shorewall6config
+  notify: restart shorewall6
+
+- name: enable shorewall and shorewall6 service
+  service:
+    name: "{{ item }}"
+    state: started
+    enabled: yes
+  with_items:
+      - shorewall
+      - shorewall6
+  when: shorewallconfig.changed or shorewall6config.changed
+...

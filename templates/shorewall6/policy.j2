@@ -1,0 +1,23 @@
+# {{ ansible_managed }}
+# Do not change file directly, changes will be overwritten.
+#
+#
+# Shorewall6 -- /etc/shorewall6/policy
+#
+# For information about entries in this file, type "man shorewall6-policy"
+#
+# The manpage is also online at
+# http://www.shorewall.net/manpages6/shorewall6-policy.html
+#
+###############################################################################
+#SOURCE		DEST		POLICY	LOGLEVEL	RATE	CONNLIMIT
+
+{% for item in shorewall6_group_policy %}
+{{ item.source }} {{ item.dest }} {{ item.policy }}{% if item.loglevel is defined %} {{ item.loglevel }}{% endif %}{% if item.comment is defined %} # {{ item.comment }}{% endif %}
+
+{% endfor %}
+
+{% for item in shorewall6_host_policy %}
+{{ item.source }} {{ item.dest }} {{ item.policy }}{% if item.loglevel is defined %} {{ item.loglevel }}{% endif %}{% if item.comment is defined %} # {{ item.comment }}{% endif %}
+
+{% endfor %}
