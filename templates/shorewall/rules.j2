@@ -13,14 +13,12 @@
 #ACTION		SOURCE		DEST		PROTO	DPORT	SPORT	ORIGDEST	RATE	USER	MARK	CONNLIMIT	TIME	HEADERS	SWITCH	HELPER
 
 ?SECTION ALL
-
 {% for item in shorewall_group_rules %}
 {% if item.section == "all" %}
 {{ item.action }} {{ item.source }} {{ item.dest }}{% if item.proto is defined %} {{ item.proto }}{% endif %}{% if item.dport is defined %} {{ item.dport }}{% endif %}{% if item.sport is defined %} {{ item.sport }}{% endif %}{% if item.origdest is defined %} {{ item.origdest }}{% endif %}{% if item.comment is defined %} # {{ item.comment }}{% endif %}
 
 {% endif %}
 {% endfor %}
-
 {% if shorewall_host_rules is defined %}
 {% for item in shorewall_host_rules %}
 {% if item.section == "all" %}
@@ -29,16 +27,13 @@
 {% endif %}
 {% endfor %}
 {% endif %}
-
 ?SECTION ESTABLISHED
-
 {% for item in shorewall_group_rules %}
 {% if item.section == "established" %}
 {{ item.action }} {{ item.source }} {{ item.dest }}{% if item.proto is defined %} {{ item.proto }}{% endif %}{% if item.dport is defined %} {{ item.dport }}{% endif %}{% if item.sport is defined %} {{ item.sport }}{% endif %}{% if item.origdest is defined %} {{ item.origdest }}{% endif %}{% if item.comment is defined %} # {{ item.comment }}{% endif %}
 
 {% endif %}
 {% endfor %}
-
 {% if shorewall_host_rules is defined %}
 {% for item in shorewall_host_rules %}
 {% if item.section == "established" %}
@@ -47,17 +42,13 @@
 {% endif %}
 {% endfor %}
 {% endif %}
-
-
 ?SECTION RELATED
-
 {% for item in shorewall_group_rules %}
 {% if item.section == "related" %}
 {{ item.action }} {{ item.source }} {{ item.dest }}{% if item.proto is defined %} {{ item.proto }}{% endif %}{% if item.dport is defined %} {{ item.dport }}{% endif %}{% if item.sport is defined %} {{ item.sport }}{% endif %}{% if item.origdest is defined %} {{ item.origdest }}{% endif %}{% if item.comment is defined %} # {{ item.comment }}{% endif %}
 
 {% endif %}
 {% endfor %}
-
 {% if shorewall_host_rules is defined %}
 {% for item in shorewall_host_rules %}
 {% if item.section == "related" %}
@@ -66,17 +57,13 @@
 {% endif %}
 {% endfor %}
 {% endif %}
-
-
 ?SECTION INVALID
-
 {% for item in shorewall_group_rules %}
 {% if item.section == "invalid" %}
 {{ item.action }} {{ item.source }} {{ item.dest }}{% if item.proto is defined %} {{ item.proto }}{% endif %}{% if item.dport is defined %} {{ item.dport }}{% endif %}{% if item.sport is defined %} {{ item.sport }}{% endif %}{% if item.origdest is defined %} {{ item.origdest }}{% endif %}{% if item.comment is defined %} # {{ item.comment }}{% endif %}
 
 {% endif %}
 {% endfor %}
-
 {% if shorewall_host_rules is defined %}
 {% for item in shorewall_host_rules %}
 {% if item.section == "invalid" %}
@@ -85,17 +72,13 @@
 {% endif %}
 {% endfor %}
 {% endif %}
-
-
 ?SECTION UNTRACKED
-
 {% for item in shorewall_group_rules %}
 {% if item.section == "untracked" %}
 {{ item.action }} {{ item.source }} {{ item.dest }}{% if item.proto is defined %} {{ item.proto }}{% endif %}{% if item.dport is defined %} {{ item.dport }}{% endif %}{% if item.sport is defined %} {{ item.sport }}{% endif %}{% if item.origdest is defined %} {{ item.origdest }}{% endif %}{% if item.comment is defined %} # {{ item.comment }}{% endif %}
 
 {% endif %}
 {% endfor %}
-
 {% if shorewall_host_rules is defined %}
 {% for item in shorewall_host_rules %}
 {% if item.section == "untracked" %}
@@ -104,17 +87,13 @@
 {% endif %}
 {% endfor %}
 {% endif %}
-
-
 ?SECTION NEW
-
 {% for item in shorewall_group_rules %}
 {% if item.section == "new" %}
 {{ item.action }} {{ item.source }} {{ item.dest }}{% if item.proto is defined %} {{ item.proto }}{% endif %}{% if item.dport is defined %} {{ item.dport }}{% endif %}{% if item.sport is defined %} {{ item.sport }}{% endif %}{% if item.origdest is defined %} {{ item.origdest }}{% endif %}{% if item.comment is defined %} # {{ item.comment }}{% endif %}
 
 {% endif %}
 {% endfor %}
-
 {% if shorewall_host_rules is defined %}
 {% for item in shorewall_host_rules %}
 {% if item.section == "new" %}
@@ -123,5 +102,3 @@
 {% endif %}
 {% endfor %}
 {% endif %}
-
-
