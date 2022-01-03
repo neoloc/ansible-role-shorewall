@@ -26,6 +26,7 @@
       - shorewall
     state: present
   when: shorewall.install == true
+  register: shorewall_installed
   tags: [firewall]
 
 - name: install shorewall6
@@ -34,6 +35,7 @@
       - shorewall6
     state: present
   when: shorewall6.install == true
+  register: shorewall6_installed
   tags: [firewall]
 
 - name: update firewall configuration
@@ -62,17 +64,33 @@
   register: shorewall6config
   notify: restart shorewall6
 
-- name: enable shorewall service
+- name: start shorewall service
   service:
     name: shorewall
     state: started
+  when:
+    - shorewall_installed.changed
+    - shorewall.service == true
+
+- name: start shorewall6 service
+  service:
+    name: shorewall6
+    state: started
+  when:
+    - shorewall6_installed.changed
+    - shorewall6.service == true
+
+- name: enable shorewall service
+  service:
+    name: shorewall
     enabled: yes
-  when: shorewallconfig.changed and shorewall.service == true
+  when:
+    - shorewall.service == true
 
 - name: enable shorewall6 service
   service:
     name: shorewall6
-    state: started
     enabled: yes
-  when: shorewall6config.changed and shorewall.service == true
+  when:
+    - shorewall6.service == true
 ...
