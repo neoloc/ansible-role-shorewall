@@ -68,6 +68,8 @@
   service:
     name: shorewall
     state: started
+  async: 300
+  poll: 5
   when:
     - shorewall_installed.changed
     - shorewall.service == true
@@ -76,6 +78,8 @@
   service:
     name: shorewall6
     state: started
+  async: 300
+  poll: 5
   when:
     - shorewall6_installed.changed
     - shorewall6.service == true
